@@ -154,7 +154,8 @@ use SiteSetup;
     $HTTP_HEADER_PARAMS    = $SetupVariables->{-HTTP_HEADER_PARAMS};
     $HTTP_HEADER_KEYWORDS  = $SetupVariables->{-HTTP_HEADER_KEYWORDS};
     $HTTP_HEADER_DESCRIPTION = $SetupVariables->{-HTTP_HEADER_DESCRIPTION};
-   $AUTH_TABLE             = $SetupVariables->{-AUTH_TABLE};
+    $SITE_DISPLAY_NAME          = $SetupVariables->{-SITE_DISPLAY_NAME};
+    $AUTH_TABLE             = $SetupVariables->{-AUTH_TABLE};
     $AUTH_MSQL_USER_NAME   = $SetupVariables->{-AUTH_MSQL_USER_NAME};
     $additonalautusernamecomments  = $SetupVariables->{-ADDITIONALAUTHUSERNAMECOMMENTS};
 #Mail settings

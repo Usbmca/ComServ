@@ -1,5 +1,6 @@
-#!/usr/bin/perl -wT
-# 	$Id: index.cgi,v 1.12 2014/03/20 14:27:36 shanta Exp $
+#!/usr/bin/perl -wT v 1.06 2018/12/13
+# 	$Id: index.cgi,
+#  v 1.12 2014/03/20 14:27:36 shanta Exp $
 
 # Copyright (C) 1994 - 2001  eXtropia.com
 #
@@ -19,7 +20,7 @@
 # Boston, MA  02111-1307, USA.
 
 use strict;
-my $AppVer = "ver 1.05, July 5, 2018";
+my $AppVer = "ver 1.06, December 13, 2018";
 
 BEGIN
 {

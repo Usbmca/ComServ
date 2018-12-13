@@ -88,7 +88,7 @@ foreach ($CGI->param()) {
     my $SiteName = $CGI->param('site') ;
     my $UseModPerl = 1;
     my $AUTH_TABLE;
-my $GLOBAL_DATAFILES_DIRECTORY ="/home/beemast/Datafiles" ;
+my $GLOBAL_DATAFILES_DIRECTORY  ;
 my $TableName;
 my $ProjectTableName;
 my $AUTH_MSQL_USER_NAME;
@@ -97,6 +97,38 @@ my $TodoTB = 'todo_tb';
 my $Affiliate = 001;
 my $HasMembers = 0;
 my $HostName   = $ENV{'SERVER_NAME'};
+ use SiteSetup;
+#my $S   = &CSCSetup::SiteVariables;
+  my $SetupVariables  = new SiteSetup($UseModPerl, $SiteName);
+    $SiteName                 = $SetupVariables->{-SITE_NAME};
+    my $homeview             = $SetupVariables->{-HOME_VIEW}; 
+    my $homeviewname          = $homeview || $SetupVariables->{-HOME_VIEW_NAME};
+    $Affiliate                = $SetupVariables->{-AFFILIATE};
+    my $BASIC_DATA_VIEW       = $SetupVariables->{-BASIC_DATA_VIEW};
+    my $page_top_view         = $SetupVariables->{-PAGE_TOP_VIEW}||'PageTopView';
+    my $page_bottom_view      = $SetupVariables->{-PAGE_BOTTOM_VIEW};
+    my $page_left_view        = $SetupVariables->{-LEFT_PAGE_VIEW};
+#Mail settings
+    my $mail_from             = $SetupVariables->{-MAIL_FROM}; 
+    my $mail_to               = $SetupVariables->{-MAIL_TO};
+    my $mail_replyto          = $SetupVariables->{-MAIL_REPLYTO};
+    my $CSS_VIEW_NAME         = $SetupVariables->{-CSS_VIEW_NAME};
+    my $app_logo              = $SetupVariables->{-APP_LOGO};
+    my $app_logo_height       = $SetupVariables->{-APP_LOGO_HEIGHT};
+    my $app_logo_width        = $SetupVariables->{-APP_LOGO_WIDTH};
+    my $app_logo_alt          = $SetupVariables->{-APP_LOGO_ALT};
+    my $IMAGE_ROOT_URL        = $SetupVariables->{-IMAGE_ROOT_URL}; 
+    my $DOCUMENT_ROOT_URL     = $SetupVariables->{-DOCUMENT_ROOT_URL};
+    my $HTTP_HEADER_PARAMS    = $SetupVariables->{-HTTP_HEADER_PARAMS};
+    my $HTTP_HEADER_KEYWORDS  = $SetupVariables->{-HTTP_HEADER_KEYWORDS};
+    my $HTTP_HEADER_DESCRIPTION = $SetupVariables->{-HTTP_HEADER_DESCRIPTION};
+    $GLOBAL_DATAFILES_DIRECTORY = $SetupVariables->{-GLOBAL_DATAFILES_DIRECTORY}||'/home/shanta/Datafiles"';
+   $MySQLPW               = $SetupVariables->{-MySQLPW};
+    $DBI_DSN               = $SetupVariables->{-DBI_DSN};
+    $AUTH_MSQL_USER_NAME   = $SetupVariables->{-AUTH_MSQL_USER_NAME};
+    $SITE_DISPLAY_NAME          = $SetupVariables->{-SITE_DISPLAY_NAME};
+    my $LocalIp            = $SetupVariables->{-LOCAL_IP};
+
 if ($HostName eq 'computersystemconsulting.ca'||
     $HostName eq 'brew.computersystemconsulting.ca'){
    $GLOBAL_DATAFILES_DIRECTORY ="/home/shanta/Datafiles";
@@ -119,6 +151,12 @@ if ($HostName eq 'grindrodbc.com' ||
    $GLOBAL_DATAFILES_DIRECTORY ="/home/grindrod/Datafiles";
 }
 
+#if ($HostName eq 'forager.com' ||
+#    $HostName eq 'universal.forager.com'||
+#    $HostName eq 'universalforager.com'||
+#    $HostName eq 'shantasworkshop.grindrodbc.com'){
+#   $GLOBAL_DATAFILES_DIRECTORY ="/home/forager/Datafiles";
+#}
 #use CSCSetup;
 
 my $VIEW_LOADER = new Extropia::Core::View
@@ -174,37 +212,7 @@ if ($CGI->param('site')){
 my $username =  $SESSION ->getAttribute(-KEY => 'auth_username');
 my $group    =  $SESSION ->getAttribute(-KEY => 'auth_group');
 
- use SiteSetup;
-#my $S   = &CSCSetup::SiteVariables;
-  my $SetupVariables  = new SiteSetup($UseModPerl, $SiteName);
-    $SiteName                 = $SetupVariables->{-SITE_NAME};
-    my $homeview             = $SetupVariables->{-HOME_VIEW}; 
-#    my $homeviewname          = $SetupVariables->{-HOME_VIEW_NAME};
-    $Affiliate                = $SetupVariables->{-AFFILIATE};
-    my $BASIC_DATA_VIEW       = $SetupVariables->{-BASIC_DATA_VIEW};
-    my $page_top_view         = $SetupVariables->{-PAGE_TOP_VIEW}||'PageTopView';
-    my $page_bottom_view      = $SetupVariables->{-PAGE_BOTTOM_VIEW};
-    my $page_left_view        = $SetupVariables->{-LEFT_PAGE_VIEW};
-#Mail settings
-    my $mail_from             = $SetupVariables->{-MAIL_FROM}; 
-    my $mail_to               = $SetupVariables->{-MAIL_TO};
-    my $mail_replyto          = $SetupVariables->{-MAIL_REPLYTO};
-    my $CSS_VIEW_NAME         = $SetupVariables->{-CSS_VIEW_NAME};
-    my $app_logo              = $SetupVariables->{-APP_LOGO};
-    my $app_logo_height       = $SetupVariables->{-APP_LOGO_HEIGHT};
-    my $app_logo_width        = $SetupVariables->{-APP_LOGO_WIDTH};
-    my $app_logo_alt          = $SetupVariables->{-APP_LOGO_ALT};
-    my $IMAGE_ROOT_URL        = $SetupVariables->{-IMAGE_ROOT_URL}; 
-    my $DOCUMENT_ROOT_URL     = $SetupVariables->{-DOCUMENT_ROOT_URL};
-    my $HTTP_HEADER_PARAMS    = $SetupVariables->{-HTTP_HEADER_PARAMS};
-    my $HTTP_HEADER_KEYWORDS  = $SetupVariables->{-HTTP_HEADER_KEYWORDS};
-    my $HTTP_HEADER_DESCRIPTION = $SetupVariables->{-HTTP_HEADER_DESCRIPTION};
-   $MySQLPW               = $SetupVariables->{-MySQLPW};
-    $DBI_DSN               = $SetupVariables->{-DBI_DSN};
-    $AUTH_MSQL_USER_NAME   = $SetupVariables->{-AUTH_MSQL_USER_NAME};
-     my $LocalIp            = $SetupVariables->{-LOCAL_IP};
 
-my $GLOBAL_DATAFILES_DIRECTORY = $SetupVariables->{-GLOBAL_DATAFILES_DIRECTORY}||'/home/shanta/Datafiles"';
 my $TEMPLATES_CACHE_DIRECTORY  = $GLOBAL_DATAFILES_DIRECTORY.$SetupVariables->{-TEMPLATES_CACHE_DIRECTORY,};
 my $APP_DATAFILES_DIRECTORY    = $SetupVariables->{-APP_DATAFILES_DIRECTORY};
 #my $site = 'file';

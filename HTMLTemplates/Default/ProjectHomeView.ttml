@@ -50,6 +50,9 @@
  [% PROCESS ShantaWorkShopHOMEPagesql.ttml %]
 [%  ELSIF SiteName ==  'Skye' %]
   [% PROCESS SkyeProjectPagesql.ttml %]
+ [% ELSIF SiteName == "universal" %]
+ [% PROCESS WiseWomanProjectPagesql.ttml %]
+
 [% ELSIF SiteName == "WiseWoman"  %]
  [% PROCESS WiseWomanProjectPagesql.ttml %]
  [% ELSE %]
@@ -83,6 +86,7 @@
 <h4>Our current Projects   </h4>
                  [% IF group == 'CSC_admin' OR
                     group == 'CSCDev_admin' OR
+                    group == 'universal_Admin OR
                     username == 'shanta'
                  %]
                      <a href="/cgi-bin/ToDo/project_tracker.cgi?site=[% SiteName %]&amp;[% session_string %]&view=BasicDataView" target = "_blank">Data</a>
@@ -91,17 +95,21 @@
 [% IF SiteName == 'AltPower' %]
  [% embed ('AltPowerProjects') %]
 [% END %]		
-	      
+[% IF SiteName == 'universal' %]
+ [% embed ('universalProjects') %]
+[% END %]		
+      
 [% embed('LiveEditAdmin') %]
                                 
                                     
       [% body %]
-                 [% IF group == 'CSC_admin' OR
-                    group == 'CSCDev_admin' OR
-                    group == 'MW_admin' OR
-                    group == 'WiseWoman_admin' OR
-                    group == 'AltPower_admin' OR
-                    username == 'Shanta'
+   [% IF group == 'CSC_admin' OR
+         group == 'CSCDev_admin' OR
+         group == 'MW_admin' OR
+         group == 'WiseWoman_admin' OR
+         group == 'AltPower_admin' OR
+         group == 'universal_Admin' OR
+         username == 'Shanta'
                  %]
   <p>                   <a href="/cgi-bin/ToDo/project_tracker.cgi?site=[% SiteName %]&amp;[% session_string %]&display_add_form=on" target = "_blank">Add Project</a>
  [% embed('ToDoSQL') %] 

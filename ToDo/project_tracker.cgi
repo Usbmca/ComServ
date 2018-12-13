@@ -53,6 +53,7 @@ my @TEMPLATES_SEARCH_PATH = qw(../HTMLTemplates/Apis
   ../HTMLTemplates/SkyeFarm
   ../HTMLTemplates/TelMark
   ../HTMLTemplates/VitalVic
+  ../HTMLTemplates/Universal
   ../HTMLTemplates/WW
   ../HTMLTemplates/Default);
 
@@ -103,7 +104,7 @@ my $ANI_FAVICON;
 my $FAVICON_TYPE;
 my $IMAGE_ROOT_URL;
 my $DOCUMENT_ROOT_URL;
-my $GLOBAL_DATAFILES_DIRECTORY = "/home/usbmca/Datafiles";
+my $GLOBAL_DATAFILES_DIRECTORY = "/home/forager/Datafiles";
 my $TEMPLATES_CACHE_DIRECTORY;
 my $APP_DATAFILES_DIRECTORY;
 my $DATAFILES_DIRECTORY;

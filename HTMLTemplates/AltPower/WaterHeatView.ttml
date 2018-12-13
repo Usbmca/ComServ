@@ -137,7 +137,6 @@ Variable ative in DevHomeView
 </table>
 
 
-<!-- End EV home view -->
+<!-- End WaterHeat view -->
 
-[% embed(data.page_bottom_view) %]
 
